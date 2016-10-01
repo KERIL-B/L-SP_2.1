@@ -22,10 +22,11 @@ namespace PIRATE_BAY_GAME
     {
         MAIN go = new MAIN();
         System.Timers.Timer timer;
+        
         public MainWindow()
         {
             InitializeComponent();
-            go.StartPreparation(shipCanvas,mapCanvas,sailButton,MessageCanvas,newGoldL,armorSpentL,coresSpentL);
+            go.StartPreparation(resourcesCanvas, shipCanvas, mapCanvas, sailButton, MessageCanvas, newGoldL, armorSpentL, coresSpentL, repairBtn,goldLbl,cornLbl,snacksLbl,armorLbl,coresLbl);
             timer = new System.Timers.Timer(500);
             timer.Elapsed += timer_Elapsed;
             timer.Start();
@@ -56,6 +57,7 @@ namespace PIRATE_BAY_GAME
             hideRightPannelButton.Visibility = System.Windows.Visibility.Visible;
             timer.Stop();
             go.StopSailing();
+            go.StopRepairing();
 
         }
 
@@ -66,6 +68,7 @@ namespace PIRATE_BAY_GAME
             hideRightPannelButton.Visibility = System.Windows.Visibility.Hidden;
             timer.Start();
             go.ContinueSalling();
+            go.ContinueRepairing();
         }
 
         private void sailButton_Click(object sender, RoutedEventArgs e)
@@ -77,6 +80,11 @@ namespace PIRATE_BAY_GAME
         {
             MessageCanvas.Visibility = System.Windows.Visibility.Hidden;
             timer.Start();
+        }
+
+        private void repairBtn_Click(object sender, RoutedEventArgs e)
+        {
+            go.RepairBtnClick();
         }
     }
 }

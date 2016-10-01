@@ -9,17 +9,43 @@
                 <ImageBrush/>
             </Canvas.Background>
 
-       </Canvas>
+        </Canvas>
+
+        <Canvas x:Name="resourcesCanvas" VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Width="500" Canvas.Left="150">
+            
+            <Label x:Name="goldLbl" Margin="40,5">
+            </Label>
+            
+            <Label x:Name="cornLbl" Margin="145,5">
+            </Label>
+
+            <Label x:Name="snacksLbl" Margin="250,5">
+            </Label>
+
+            <Label x:Name="armorLbl" Margin="335,5">
+            </Label>
+
+            <Label x:Name="coresLbl" Margin="425,5">
+            </Label>
+            
+            <Label>
+            </Label>
+
+
+            <Canvas.Background>
+                <ImageBrush/>
+            </Canvas.Background>
+        </Canvas>
 
         <Button x:Name="hideRightPannelButton" HorizontalAlignment="Right" VerticalAlignment="Center"  Width="30" Height="80" Canvas.Right="300" Canvas.Top="210" Visibility="Hidden" Click="hideRightPannelButton_Click" Margin="0,212,300,208">
             <StackPanel>
-                <Image Source="E:\vs2012\1progs\3dSemestr\PIRATE_BAY_GAME\PIRATE_BAY_GAME\bin\Debug\IMGs\hide button\hide.png" />
+                <Image Source="E:\vs2012\1progs\3dSemestr\PIRATE_BAY_GAME\PIRATE_BAY_GAME\bin\Debug\IMGs\Buttons\hide button\hide.png" />
             </StackPanel>
         </Button>
 
         <Button x:Name="showRightPannelButton" HorizontalAlignment="Right" VerticalAlignment="Center"  Width="30" Height="80" Canvas.Left="760" Canvas.Top="210" Click="showRightPannelButton_Click">
             <StackPanel Visibility="Visible">
-                <Image Source="E:\vs2012\1progs\3dSemestr\PIRATE_BAY_GAME\PIRATE_BAY_GAME\bin\Debug\IMGs\hide button\show.png" />
+                <Image Source="E:\vs2012\1progs\3dSemestr\PIRATE_BAY_GAME\PIRATE_BAY_GAME\bin\Debug\IMGs\Buttons\hide button\show.png" />
             </StackPanel>
         </Button>
         
@@ -30,14 +56,18 @@
 
         </Canvas>
 
-        <Button x:Name="sailButton" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="41,316,0,148" Click="sailButton_Click">
+        <Button x:Name="sailButton" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="47,150,0,0" Click="sailButton_Click">
             <StackPanel Visibility="Visible">
-                <Image Source="E:\vs2012\1progs\3dSemestr\PIRATE_BAY_GAME\PIRATE_BAY_GAME\bin\Debug\IMGs\shipSaleButton.png"/>
+                <Image Source="E:\vs2012\1progs\3dSemestr\PIRATE_BAY_GAME\PIRATE_BAY_GAME\bin\Debug\IMGs\Buttons\shipSaleButton.png"/>
             </StackPanel>
         </Button>
 
         <Canvas x:Name="rightPannelCanvas" HorizontalAlignment="Right" Height="500" Width="300" Visibility="Hidden" Background="WhiteSmoke">
-
+            <Button x:Name="repairBtn" HorizontalAlignment="Left" VerticalAlignment="Top" Width="45" Height="45"  Margin="5,5" Click="repairBtn_Click" Background="{x:Null}">
+                <StackPanel Visibility="Visible">
+                    <Image Source="E:\vs2012\1progs\3dSemestr\PIRATE_BAY_GAME\PIRATE_BAY_GAME\bin\Debug\IMGs\Buttons\repairBtn.png"/>
+                </StackPanel>
+            </Button>
         </Canvas>
 
         <Canvas x:Name="MessageCanvas" HorizontalAlignment="Center" VerticalAlignment="Center" Width="400" Height="200" Visibility="Hidden">
@@ -46,7 +76,7 @@
             </Canvas.Background>
             <Button x:Name="closeMessageCanvas" HorizontalAlignment="Right" VerticalAlignment="Top" Click="closeMessageCanvas_Click" Height="30" Width="30" Canvas.Left="363" Canvas.Top="9" Background="{x:Null}" BorderBrush="{x:Null}">
                 <StackPanel>
-                    <Image Source="E:\vs2012\1progs\3dSemestr\PIRATE_BAY_GAME\PIRATE_BAY_GAME\bin\Debug\IMGs\x.png" />
+                    <Image Source="E:\vs2012\1progs\3dSemestr\PIRATE_BAY_GAME\PIRATE_BAY_GAME\bin\Debug\IMGs\Buttons\x.png" />
                 </StackPanel>
             </Button>
             <Label x:Name="newGoldL"   FontSize="30" Width="96" Height="50" Canvas.Left="164" Canvas.Top="67">

@@ -105,26 +105,65 @@ namespace PIRATE_BAY_GAME
 
     class Resources
     {
-        private int gold { get; set; }
+        static private BitmapImage resourcesPannel_IMG = new BitmapImage(new Uri("IMGs\\Resources\\resourcesPannel.png", UriKind.Relative));
+        private ImageBrush resourcesPannel_B = new ImageBrush(resourcesPannel_IMG);
 
-        public void SetGold(int n,Canvas canvas)
+        private int gold { get; set; }
+        private int corn { get; set; }
+        private int snacks { get; set; }
+        private int armor { get; set; }
+        private int cores { get; set; }
+
+        public int CheckGold()
         {
-            gold = n;
-            DrawGold(canvas);
+            return gold;
         }
-        private void DrawGold(Canvas canvas)
+        public int CheckCorn()
         {
-            canvas.Children.Clear();
-            TextBlock tb = new TextBlock();
-            tb.Text = gold + "";
-            tb.FontSize = 20;
-            tb.Margin = new Thickness(230, 1, 0, 0);
-            canvas.Children.Add(tb);
+            return corn;
         }
-        public void AddGold(int n,Canvas canvas)
+        public int CheckSnacks()
+        {
+            return snacks;
+        }
+        public int CheckArmor()
+        {
+            return armor;
+        }
+        public int CheckCores()
+        {
+            return cores;
+        }
+
+        public void ChangeGoldValue(int n, Label label)
         {
             gold += n;
-            DrawGold(canvas);
+            label.Content = gold;
         }
+        public void ChangeCornValue(int n, Label label)
+        {
+            corn += n;
+            label.Content = corn;
+        }
+        public void ChangeSnacksValue(int n, Label label)
+        {
+            snacks += n;
+            label.Content = snacks;
+        }
+        public void ChangeArmorValue(int n, Label label)
+        {
+            armor += n;
+            label.Content = armor;
+        }
+        public void ChangeCoresValue(int n, Label label)
+        {
+            cores += n;
+            label.Content = armor;
+        }
+        public void SetBackground(Canvas canvas)
+        {
+            canvas.Background = resourcesPannel_B;
+        }
+    
     }
 }
