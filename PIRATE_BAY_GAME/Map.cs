@@ -108,12 +108,16 @@ namespace PIRATE_BAY_GAME
         static private BitmapImage resourcesPannel_IMG = new BitmapImage(new Uri("IMGs\\Resources\\resourcesPannel.png", UriKind.Relative));
         private ImageBrush resourcesPannel_B = new ImageBrush(resourcesPannel_IMG);
 
+
         private int gold { get; set; }
+
         private int corn { get; set; }
         private int snacks { get; set; }
         private int armor { get; set; }
         private int cores { get; set; }
 
+        //Check Resources
+        #region
         public int CheckGold()
         {
             return gold;
@@ -134,7 +138,10 @@ namespace PIRATE_BAY_GAME
         {
             return cores;
         }
+        #endregion
 
+        //Chabge Resources
+        #region
         public void ChangeGoldValue(int n, Label label)
         {
             gold += n;
@@ -164,6 +171,6 @@ namespace PIRATE_BAY_GAME
         {
             canvas.Background = resourcesPannel_B;
         }
-    
+        #endregion
     }
 }

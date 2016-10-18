@@ -25,25 +25,30 @@ namespace PIRATE_BAY_GAME
         System.Timers.Timer shipSailTimer;
         System.Timers.Timer shipRepairTimer;
 
+        private bool defferedSail { get; set; }
+
         private int timeValue { get; set; }
         private int timeGetHome { get; set; }
+
         private Boolean isSailing { get; set; }
         private Boolean isRepairing { get; set; }
 
-        private Canvas resorcesCanvas = new Canvas();
-        private Canvas shipCanvas = new Canvas();
-        private Canvas mapCanvas = new Canvas();
-        private Canvas messageCanvas = new Canvas();
-        private Button sailButton = new Button();
-        private Button repairBtn = new Button();
-        private Label newGoldL = new Label();
-        private Label armorSpentL = new Label();
-        private Label coresSpentL = new Label();
-        private Label goldLbl = new Label();
-        private Label cornLbl = new Label();
-        private Label snacksLbl = new Label();
-        private Label armorLbl = new Label();
-        private Label coresLbl = new Label();
+        private Canvas resorcesCanvas;
+        private Canvas shipCanvas;
+        private Canvas mapCanvas;
+        private Canvas messageCanvas;
+
+        private Button sailButton;
+        private Button repairBtn;
+
+        private Label newGoldL;
+        private Label armorSpentL;
+        private Label coresSpentL;
+        private Label goldLbl;
+        private Label cornLbl;
+        private Label snacksLbl;
+        private Label armorLbl;
+        private Label coresLbl;
 
 
 
@@ -57,6 +62,10 @@ namespace PIRATE_BAY_GAME
         private ImageBrush messageBG_Pepair100_B = new ImageBrush(messageBG_Pepair100_IMG);
         static private BitmapImage messageBG_shortOfGold_IMG = new BitmapImage(new Uri("IMGs\\Messages\\messageBackground_shortOfGold.png", UriKind.Relative));
         private ImageBrush messageBG_shortOfGold_B = new ImageBrush(messageBG_shortOfGold_IMG);
+        static private BitmapImage messageBG_shortOfSnacks_IMG = new BitmapImage(new Uri("IMGs\\Messages\\messageBackground_shortOfSnacks.png", UriKind.Relative));
+        private ImageBrush messageBG_shortOfSnacks_B = new ImageBrush(messageBG_shortOfSnacks_IMG);
+        static private BitmapImage messageBG_howToPlay_IMG = new BitmapImage(new Uri("IMGs\\Messages\\messageBackground_HowToPlay.png", UriKind.Relative));
+        private ImageBrush messageBG_howToPlay_B = new ImageBrush(messageBG_howToPlay_IMG);
 
 
         public void StopRepairing()
@@ -108,14 +117,28 @@ namespace PIRATE_BAY_GAME
             this.armorLbl = armorLbl;
             this.coresLbl = coresLbl;
 
-            ResourcesClass.SetBackground(resorcesCanvas);
+            
 
+            ResourcesClass.SetBackground(resorcesCanvas);
             ResourcesClass.ChangeGoldValue(100, goldLbl);
             ResourcesClass.ChangeCornValue(10, cornLbl);
             ResourcesClass.ChangeSnacksValue(10, snacksLbl);
             ResourcesClass.ChangeArmorValue(10, armorLbl);
             ResourcesClass.ChangeCoresValue(10, coresLbl);
 
+        }
+
+        public void DefferedStartSailShip()
+        {
+            defferedSail = true;
+        }
+
+        public void CheckDefferedSail()
+        {
+            if (!isSailing)
+
+                if (defferedSail)
+                    StartSailShip();
         }
 
         public void StartSailShip()
@@ -142,25 +165,34 @@ namespace PIRATE_BAY_GAME
                     }
                     else
                     {
-                        isSailing = true;
-                        repairBtn.IsEnabled = false;
-                        sailButton.Visibility = System.Windows.Visibility.Hidden;
-                        shipSailTimer = new System.Timers.Timer(200);
-                        shipSailTimer.Elapsed += shipSailTimer_Elapsed;
-                        timeValue = 0;
-                        shipSailTimer.Start();
+                        if (ResourcesClass.CheckSnacks() < 6)
+                        {
+                            messageCanvas.Background = messageBG_shortOfSnacks_B;
+                            messageCanvas.Visibility = System.Windows.Visibility.Visible;
+                            newGoldL.Visibility = System.Windows.Visibility.Hidden;
+                            coresSpentL.Visibility = System.Windows.Visibility.Hidden;
+                            armorSpentL.Visibility = System.Windows.Visibility.Hidden;
+                        }
+                        else
+                        {
+                            isSailing = true;
+                            ResourcesClass.ChangeSnacksValue(-6, snacksLbl);
+                            repairBtn.IsEnabled = false;
+                            sailButton.Visibility = System.Windows.Visibility.Hidden;
+                            shipSailTimer = new System.Timers.Timer(200);
+                            shipSailTimer.Elapsed += shipSailTimer_Elapsed;
+                            timeValue = 0;
+                            shipSailTimer.Start();
+                        }
                     }
                 }
             }
-            else
-            {
 
-            }
         }
 
         public void RepairBtnClick()
         {
-            if (!isSailing)
+            if ((!isSailing)&&(!defferedSail))
             {
                 isRepairing = true;
                 sailButton.IsEnabled = false;
@@ -171,6 +203,15 @@ namespace PIRATE_BAY_GAME
             }
         }
 
+        public void HowToPlay()
+        {
+            messageCanvas.Background = messageBG_howToPlay_B;
+            messageCanvas.Visibility = System.Windows.Visibility.Visible;
+            newGoldL.Visibility = System.Windows.Visibility.Hidden;
+            coresSpentL.Visibility = System.Windows.Visibility.Hidden;
+            armorSpentL.Visibility = System.Windows.Visibility.Hidden;
+        }
+
         private void shipRepairTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
             try
@@ -179,6 +220,7 @@ namespace PIRATE_BAY_GAME
                     {
                         if ((ResourcesClass.CheckGold() > 20) && (ShipClass.hp < 100))
                         {
+
                             ResourcesClass.ChangeGoldValue(-20, goldLbl);
                             ShipClass.hp = (ShipClass.hp > 90) ? (100) : (ShipClass.hp += 10);
                             ShipClass.checkShipCondition(shipCanvas);
@@ -261,7 +303,7 @@ namespace PIRATE_BAY_GAME
             armorSpentL.Content = Convert.ToString(armorSpent);
             coresSpentL.Content = Convert.ToString(coresSpent);
 
-            ResourcesClass.ChangeGoldValue(gold, goldLbl);
+           ResourcesClass.ChangeGoldValue(gold, goldLbl);
 
             ShipClass.armor = (ShipClass.armor - armorSpent < 0) ? (0) : (ShipClass.armor - armorSpent);
             ShipClass.cores = (ShipClass.cores - coresSpent < 0) ? (0) : (ShipClass.cores - coresSpent);
@@ -319,6 +361,7 @@ namespace PIRATE_BAY_GAME
             ShipClass.animateShip(shipCanvas);
             ShipClass.checkShipCondition(shipCanvas);
         }
+
 
 
     }
