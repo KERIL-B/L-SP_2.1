@@ -21,7 +21,7 @@ namespace PIRATE_BAY_GAME
         Random rand = new Random();
         Map MapClass = new Map();
         Ship ShipClass = new Ship();
-        Resources ResourcesClass = new Resources();
+       // Resources ResourcesClass = new Resources();
 
         System.Timers.Timer shipSailTimer;
         System.Timers.Timer shipRepairTimer;
@@ -48,13 +48,6 @@ namespace PIRATE_BAY_GAME
         private Label newGoldL;
         private Label armorSpentL;
         private Label coresSpentL;
-        private Label goldLbl;
-        private Label cornLbl;
-        private Label snacksLbl;
-        private Label armorLbl;
-        private Label coresLbl;
-
-
 
         static private BitmapImage messageBG_IMG = new BitmapImage(new Uri("IMGs\\Messages\\messageBackground.png", UriKind.Relative));
         private ImageBrush messageBG_B = new ImageBrush(messageBG_IMG);
@@ -115,20 +108,19 @@ namespace PIRATE_BAY_GAME
             this.armorSpentL = armorSpentL;
             this.coresSpentL = coresSpentL;
             this.repairBtn = repairBtn;
-            this.goldLbl = goldLbl;
-            this.cornLbl = cornLbl;
-            this.snacksLbl = snacksLbl;
-            this.armorLbl = armorLbl;
-            this.coresLbl = coresLbl;
 
-            
+            MyResources.goldLbl = goldLbl;
+            MyResources.cornLbl = cornLbl;
+            MyResources.snacksLbl = snacksLbl;
+            MyResources.armorLbl = armorLbl;
+            MyResources.coresLbl = coresLbl;
 
-            ResourcesClass.SetBackground(resorcesCanvas);
-            ResourcesClass.ChangeGoldValue(100, goldLbl);
-            ResourcesClass.ChangeCornValue(10, cornLbl);
-            ResourcesClass.ChangeSnacksValue(10, snacksLbl);
-            ResourcesClass.ChangeArmorValue(10, armorLbl);
-            ResourcesClass.ChangeCoresValue(10, coresLbl);
+            MyResources.SetBackground(resorcesCanvas);
+            MyResources.ChangeGoldValue(100);
+            MyResources.ChangeCornValue(10);
+            MyResources.ChangeSnacksValue(10);
+            MyResources.ChangeArmorValue(10);
+            MyResources.ChangeCoresValue(10);
 
         }
 
@@ -169,7 +161,7 @@ namespace PIRATE_BAY_GAME
                     }
                     else
                     {
-                        if (ResourcesClass.CheckSnacks() < 6)
+                        if (MyResources.CheckSnacks() < 6)
                         {
                             messageCanvas.Background = messageBG_shortOfSnacks_B;
                             messageCanvas.Visibility = System.Windows.Visibility.Visible;
@@ -180,7 +172,7 @@ namespace PIRATE_BAY_GAME
                         else
                         {
                             isSailing = true;
-                            ResourcesClass.ChangeSnacksValue(-6, snacksLbl);
+                            MyResources.ChangeSnacksValue(-6);
                             repairBtn.IsEnabled = false;
                             sailButton.Visibility = System.Windows.Visibility.Hidden;
                             shipSailTimer = new System.Timers.Timer(200);
@@ -222,10 +214,10 @@ namespace PIRATE_BAY_GAME
             {
                 shipCanvas.Dispatcher.Invoke(() =>
                     {
-                        if ((ResourcesClass.CheckGold() > 20) && (ShipClass.hp < 100))
+                        if ((MyResources.CheckGold() > 20) && (ShipClass.hp < 100))
                         {
 
-                            ResourcesClass.ChangeGoldValue(-20, goldLbl);
+                            MyResources.ChangeGoldValue(-20);
                             ShipClass.hp = (ShipClass.hp > 90) ? (100) : (ShipClass.hp += 10);
                             ShipClass.checkShipCondition(shipCanvas);
                         }
@@ -307,7 +299,7 @@ namespace PIRATE_BAY_GAME
             armorSpentL.Content = Convert.ToString(armorSpent);
             coresSpentL.Content = Convert.ToString(coresSpent);
 
-           ResourcesClass.ChangeGoldValue(gold, goldLbl);
+           MyResources.ChangeGoldValue(gold);
 
             ShipClass.armor = (ShipClass.armor - armorSpent < 0) ? (0) : (ShipClass.armor - armorSpent);
             ShipClass.cores = (ShipClass.cores - coresSpent < 0) ? (0) : (ShipClass.cores - coresSpent);

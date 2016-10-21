@@ -22,11 +22,14 @@ namespace PIRATE_BAY_GAME
     {
         MAIN aboutShip = new MAIN();
         MAIN_2 aboutBuildings = new MAIN_2();
-        
+
         System.Timers.Timer timer;
 
         private static BitmapImage cornFarmIcon_img = new BitmapImage(new Uri("IMGs\\Buildings\\Farm\\icon.png", UriKind.Relative));
         private ImageBrush cornFarmIcon_Brush = new ImageBrush(cornFarmIcon_img);
+
+        private static BitmapImage messageBG_IMG = new BitmapImage(new Uri("IMGs\\Messages\\messageBackground_ noGold.png", UriKind.Relative));
+        private ImageBrush messageBG_B = new ImageBrush(messageBG_IMG);
 
         private bool isRightPannelActive { get; set; }
         private bool repairBtnClicked { get; set; }
@@ -38,7 +41,7 @@ namespace PIRATE_BAY_GAME
             cornFarmCnvs.Background = cornFarmIcon_Brush;
 
             aboutShip.StartPreparation(resourcesCanvas, shipCanvas, mapCanvas, sailButton, MessageCanvas, newGoldL, armorSpentL, coresSpentL, repairBtn, goldLbl, cornLbl, snacksLbl, armorLbl, coresLbl);
-            aboutBuildings.StartPreparation(cell_0_0,cell_0_1,cell_0_2,cell_1_0,cell_1_1,cell_1_2,cell_2_0,cell_2_1,cell_2_2);
+            aboutBuildings.StartPreparation(cell_0_0, cell_0_1, cell_0_2, cell_1_0, cell_1_1, cell_1_2, cell_2_0, cell_2_1, cell_2_2);
             timer = new System.Timers.Timer(500);
             timer.Elapsed += timer_Elapsed;
             timer.Start();
@@ -74,6 +77,7 @@ namespace PIRATE_BAY_GAME
 
         private void showRightPannelButton_Click(object sender, RoutedEventArgs e)
         {
+            aboutBuildings.TimeStop();
             rightPannelCanvas.Visibility = System.Windows.Visibility.Visible;
             showRightPannelButton.Visibility = System.Windows.Visibility.Hidden;
             hideRightPannelButton.Visibility = System.Windows.Visibility.Visible;
@@ -87,6 +91,7 @@ namespace PIRATE_BAY_GAME
 
         private void hideRightPannelButton_Click(object sender, RoutedEventArgs e)
         {
+            aboutBuildings.TimeGoOn();
             cells.IsEnabled = true;
             rightPannelCanvas.Visibility = System.Windows.Visibility.Hidden;
             showRightPannelButton.Visibility = System.Windows.Visibility.Visible;
@@ -219,8 +224,6 @@ namespace PIRATE_BAY_GAME
         }
         #endregion
 
-
-
         private void closeBuildingCanvas_Click(object sender, RoutedEventArgs e)
         {
             BuildingCanvas.Visibility = System.Windows.Visibility.Hidden;
@@ -228,7 +231,19 @@ namespace PIRATE_BAY_GAME
 
         private void cornFarmBtn_Click(object sender, RoutedEventArgs e)
         {
-            aboutBuildings.BuildCornFarm();
+            if (MyResources.CheckGold() > 30)
+            {
+                aboutBuildings.BuildCornFarm();
+            }
+            else
+            {
+                MessageCanvas.Background = messageBG_B;
+                MessageCanvas.Visibility = System.Windows.Visibility.Visible;
+                newGoldL.Visibility = System.Windows.Visibility.Hidden;
+                coresSpentL.Visibility = System.Windows.Visibility.Hidden;
+                armorSpentL.Visibility = System.Windows.Visibility.Hidden;
+
+            }
             BuildingCanvas.Visibility = System.Windows.Visibility.Hidden;
         }
 

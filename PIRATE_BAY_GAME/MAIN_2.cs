@@ -62,6 +62,7 @@ namespace PIRATE_BAY_GAME
         }
         public void BuildCornFarm()
         {
+            MyResources.ChangeGoldValue(-30);
             cells[activeForBuildingCellX, activeForBuildingCellY].building = new CornFarm(cells[activeForBuildingCellX, activeForBuildingCellY].canvas);
 
         }
@@ -72,6 +73,26 @@ namespace PIRATE_BAY_GAME
                 {
                     if (cells[i, j].building != null)
                         cells[i, j].building.Animate();
+                }
+        }
+
+        public void TimeStop()
+        {
+            for (int i=0;i<3;i++)
+                for (int j = 0; j < 3; j++)
+                {
+                    if(cells[i,j].building!=null)
+                    cells[i, j].building.TimerPause(); 
+                }
+        }
+
+        public void TimeGoOn()
+        {
+            for (int i = 0; i < 3; i++)
+                for (int j = 0; j < 3; j++)
+                {
+                    if (cells[i, j].building != null)
+                    cells[i, j].building.TimerGoOn();
                 }
         }
     }

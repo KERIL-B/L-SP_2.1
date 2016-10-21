@@ -102,72 +102,86 @@ namespace PIRATE_BAY_GAME
             status = !status;
         }
     }
-    class Resources
+    
+    static class MyResources
     {
+        static public Label goldLbl;
+        static public Label cornLbl;
+        static public Label snacksLbl;
+        static public Label coresLbl;
+        static public Label armorLbl;
+
         static private BitmapImage resourcesPannel_IMG = new BitmapImage(new Uri("IMGs\\Resources\\resourcesPannel.png", UriKind.Relative));
-        private ImageBrush resourcesPannel_B = new ImageBrush(resourcesPannel_IMG);
+        static private ImageBrush resourcesPannel_B = new ImageBrush(resourcesPannel_IMG);
 
+        static private int gold { get; set; }
 
-        private int gold { get; set; }
-
-        private int corn { get; set; }
-        private int snacks { get; set; }
-        private int armor { get; set; }
-        private int cores { get; set; }
+         static private int corn { get; set; }
+         static  private int snacks { get; set; }
+         static private int armor { get; set; }
+         static private int cores { get; set; }
 
         #region Check Resources
-        public int CheckGold()
+         static public int CheckGold()
         {
             return gold;
         }
-        public int CheckCorn()
+         static public int CheckCorn()
         {
             return corn;
         }
-        public int CheckSnacks()
+         static public int CheckSnacks()
         {
             return snacks;
         }
-        public int CheckArmor()
+         static public int CheckArmor()
         {
             return armor;
         }
-        public int CheckCores()
+         static public int CheckCores()
         {
             return cores;
         }
         #endregion
 
         #region Chabge Resources
-        public void ChangeGoldValue(int n, Label label)
+         static public void ChangeGoldValue(int n)
         {
             gold += n;
-            label.Content = gold;
+            goldLbl.Content = gold;
         }
-        public void ChangeCornValue(int n, Label label)
+         static public void ChangeCornValue(int n)
         {
-            corn += n;
-            label.Content = corn;
+            try
+            {
+                cornLbl.Dispatcher.Invoke(() =>
+                    {
+                        corn += n;
+                        cornLbl.Content = corn;
+                    });
+            }
+            catch (Exception) { }
         }
-        public void ChangeSnacksValue(int n, Label label)
+         static public void ChangeSnacksValue(int n)
         {
             snacks += n;
-            label.Content = snacks;
+            snacksLbl.Content = snacks;
         }
-        public void ChangeArmorValue(int n, Label label)
+         static public void ChangeArmorValue(int n)
         {
             armor += n;
-            label.Content = armor;
+            armorLbl.Content = armor;
         }
-        public void ChangeCoresValue(int n, Label label)
+         static public void ChangeCoresValue(int n)
         {
             cores += n;
-            label.Content = armor;
+            coresLbl.Content = cores;
         }
-        public void SetBackground(Canvas canvas)
+        #endregion
+         static public void SetBackground(Canvas canvas)
         {
             canvas.Background = resourcesPannel_B;
         }
-        #endregion
+
     }
 }
