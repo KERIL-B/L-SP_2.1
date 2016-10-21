@@ -102,7 +102,6 @@ namespace PIRATE_BAY_GAME
             status = !status;
         }
     }
-
     class Resources
     {
         static private BitmapImage resourcesPannel_IMG = new BitmapImage(new Uri("IMGs\\Resources\\resourcesPannel.png", UriKind.Relative));
@@ -116,8 +115,7 @@ namespace PIRATE_BAY_GAME
         private int armor { get; set; }
         private int cores { get; set; }
 
-        //Check Resources
-        #region
+        #region Check Resources
         public int CheckGold()
         {
             return gold;
@@ -140,8 +138,7 @@ namespace PIRATE_BAY_GAME
         }
         #endregion
 
-        //Chabge Resources
-        #region
+        #region Chabge Resources
         public void ChangeGoldValue(int n, Label label)
         {
             gold += n;

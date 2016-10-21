@@ -14,39 +14,39 @@
         <Canvas x:Name="cells" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="530"
                 Height="440" Margin="0,0,10,10" Background="#FF5EB353">
 
-            <Canvas x:Name="cell_0_0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="135" Width="170" Background="#FF5EB353" Margin="5,7.5" MouseEnter="cell_0_0_MouseEnter" MouseLeave="cell_0_0_MouseLeave" >
+            <Canvas x:Name="cell_0_0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="135" Width="170" Background="#FF5EB353" Margin="5,7.5" MouseEnter="cell_0_0_MouseEnter" MouseLeave="cell_0_0_MouseLeave" MouseDown="cell_0_0_MouseDown" >
             </Canvas>
-            <Canvas x:Name="cell_0_1" VerticalAlignment="Top" HorizontalAlignment="Left" Height="135" Width="170" Background="#FF5EB353" Margin="180,7.5" MouseEnter="cell_0_1_MouseEnter" MouseLeave="cell_0_1_MouseLeave" >
-            </Canvas>
-
-            <Canvas x:Name="cell_0_2" VerticalAlignment="Top" HorizontalAlignment="Left" Height="135" Width="170" Background="#FF5EB353" Margin="355,7.5" MouseEnter="cell_0_2_MouseEnter" MouseLeave="cell_0_2_MouseLeave">
+            <Canvas x:Name="cell_0_1" VerticalAlignment="Top" HorizontalAlignment="Left" Height="135" Width="170" Background="#FF5EB353" Margin="180,7.5" MouseEnter="cell_0_1_MouseEnter" MouseLeave="cell_0_1_MouseLeave" MouseDown="cell_0_1_MouseDown" >
             </Canvas>
 
-            <Canvas x:Name="cell_1_0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="135" Width="170" Background="#FF5EB353" Margin="5,147.5" MouseEnter="cell_1_0_MouseEnter" MouseLeave="cell_1_0_MouseLeave">
+            <Canvas x:Name="cell_0_2" VerticalAlignment="Top" HorizontalAlignment="Left" Height="135" Width="170" Background="#FF5EB353" Margin="355,7.5" MouseEnter="cell_0_2_MouseEnter" MouseLeave="cell_0_2_MouseLeave" MouseDown="cell_0_2_MouseDown">
             </Canvas>
 
-            <Canvas x:Name="cell_1_1" VerticalAlignment="Top" HorizontalAlignment="Left" Height="135" Width="170" Background="#FF5EB353" Margin="180,147.5" MouseEnter="cell_1_1_MouseEnter" MouseLeave="cell_1_1_MouseLeave">
+            <Canvas x:Name="cell_1_0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="135" Width="170" Background="#FF5EB353" Margin="5,147.5" MouseEnter="cell_1_0_MouseEnter" MouseLeave="cell_1_0_MouseLeave" MouseDown="cell_1_0_MouseDown">
             </Canvas>
 
-            <Canvas x:Name="cell_1_2" VerticalAlignment="Top" HorizontalAlignment="Left" Height="135" Width="170" Background="#FF5EB353" Margin="355,147.5" MouseEnter="cell_1_2_MouseEnter" MouseLeave="cell_1_2_MouseLeave">
+            <Canvas x:Name="cell_1_1" VerticalAlignment="Top" HorizontalAlignment="Left" Height="135" Width="170" Background="#FF5EB353" Margin="180,147.5" MouseEnter="cell_1_1_MouseEnter" MouseLeave="cell_1_1_MouseLeave" MouseDown="cell_1_1_MouseDown">
             </Canvas>
 
-            <Canvas x:Name="cell_2_0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="135" Width="170" Background="#FF5EB353" Margin="5,287.5" MouseEnter="cell_2_0_MouseEnter" MouseLeave="cell_2_0_MouseLeave">
+            <Canvas x:Name="cell_1_2" VerticalAlignment="Top" HorizontalAlignment="Left" Height="135" Width="170" Background="#FF5EB353" Margin="355,147.5" MouseEnter="cell_1_2_MouseEnter" MouseLeave="cell_1_2_MouseLeave" MouseDown="cell_1_2_MouseDown">
             </Canvas>
 
-            <Canvas x:Name="cell_2_1" VerticalAlignment="Top" HorizontalAlignment="Left" Height="135" Width="170" Background="#FF5EB353" Margin="180,287.5" MouseEnter="cell_2_1_MouseEnter" MouseLeave="cell_2_1_MouseLeave">
+            <Canvas x:Name="cell_2_0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="135" Width="170" Background="#FF5EB353" Margin="5,287.5" MouseEnter="cell_2_0_MouseEnter" MouseLeave="cell_2_0_MouseLeave" MouseDown="cell_2_0_MouseDown">
             </Canvas>
 
-            <Canvas x:Name="cell_2_2" VerticalAlignment="Top" HorizontalAlignment="Left" Height="135" Width="170" Background="#FF5EB353" Margin="355,287.5" MouseEnter="cell_2_2_MouseEnter" MouseLeave="cell_2_2_MouseLeave">
+            <Canvas x:Name="cell_2_1" VerticalAlignment="Top" HorizontalAlignment="Left" Height="135" Width="170" Background="#FF5EB353" Margin="180,287.5" MouseEnter="cell_2_1_MouseEnter" MouseLeave="cell_2_1_MouseLeave" MouseDown="cell_2_1_MouseDown">
+            </Canvas>
+
+            <Canvas x:Name="cell_2_2" VerticalAlignment="Top" HorizontalAlignment="Left" Height="135" Width="170" Background="#FF5EB353" Margin="355,287.5" MouseEnter="cell_2_2_MouseEnter" MouseLeave="cell_2_2_MouseLeave" MouseDown="cell_2_2_MouseDown">
             </Canvas>
 
         </Canvas>
 
         <Canvas x:Name="resourcesCanvas" VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Width="500" Canvas.Left="150">
-            
+
             <Label x:Name="goldLbl" Margin="40,5">
             </Label>
-            
+
             <Label x:Name="cornLbl" Margin="145,5">
             </Label>
 
@@ -58,7 +58,7 @@
 
             <Label x:Name="coresLbl" Margin="425,5">
             </Label>
-            
+
             <Label>
             </Label>
 
@@ -79,7 +79,7 @@
                 <Image Source="E:\vs2012\1progs\3dSemestr\PIRATE_BAY_GAME\PIRATE_BAY_GAME\bin\Debug\IMGs\Buttons\hide button\show.png" />
             </StackPanel>
         </Button>
-        
+
         <Canvas x:Name="shipCanvas" HorizontalAlignment="Left" VerticalAlignment="Center" Width="122" Height="128" Canvas.Left="8" Canvas.Top="156" >
             <Canvas.Background>
                 <ImageBrush/>
@@ -105,6 +105,12 @@
                     <Image Source="E:\vs2012\1progs\3dSemestr\PIRATE_BAY_GAME\PIRATE_BAY_GAME\bin\Debug\IMGs\Buttons\howToPlayBtn.png"/>
                 </StackPanel>
             </Button>
+            <Canvas x:Name="cornFarmCnvs" VerticalAlignment="Top" HorizontalAlignment="Right" Width="85" Height="67.5" Margin="10,60">
+                <Canvas.Background>
+                    <ImageBrush/>
+                </Canvas.Background>
+            </Canvas>
+
         </Canvas>
 
         <Canvas x:Name="MessageCanvas" HorizontalAlignment="Center" VerticalAlignment="Center" Width="400" Height="200" Visibility="Hidden">
@@ -123,6 +129,27 @@
             <Label x:Name="coresSpentL" Height="30" Width="78" Canvas.Left="135" Canvas.Top="153">
             </Label>
         </Canvas>
+        
+        <Canvas x:Name="BuildingCanvas" HorizontalAlignment="Center" VerticalAlignment="Center" Width="400" Height="350" Visibility="Hidden">
 
+            <Button x:Name="cornFarmBtn" Width="170" Height="135" Margin="25,40" Background="{x:Null}" BorderBrush="Black" Click="cornFarmBtn_Click" >
+                <StackPanel>
+                    <Image Source="E:\vs2012\1progs\3dSemestr\PIRATE_BAY_GAME\PIRATE_BAY_GAME\bin\Debug\IMGs\Buildings\Farm\icon.png" />
+                </StackPanel>
+            </Button>
+            <Button x:Name="kitchen" Width="170" Height="135" Margin="25,185" BorderBrush="Black" Background="{x:Null}"></Button>
+            <Button x:Name="armory" Width="170" Height="135" Margin="205,40" BorderBrush="Black" Background="{x:Null}"></Button>
+            <Button x:Name="foundry" Width="170" Height="135" Margin="205,185" BorderBrush="Black" Background="{x:Null}"></Button>
+            
+            <Button x:Name="closeBuildingCanvas" HorizontalAlignment="Right" VerticalAlignment="Top" Height="30" Width="30" Canvas.Left="363" Canvas.Top="9" Background="{x:Null}" BorderBrush="{x:Null}" Click="closeBuildingCanvas_Click">
+                <StackPanel>
+                    <Image Source="E:\vs2012\1progs\3dSemestr\PIRATE_BAY_GAME\PIRATE_BAY_GAME\bin\Debug\IMGs\Buttons\x.png" />
+                </StackPanel>
+            </Button>
+            
+            <Canvas.Background>
+                <ImageBrush/>
+            </Canvas.Background>
+        </Canvas>
     </Grid>
 </Window>

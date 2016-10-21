@@ -20,17 +20,25 @@ namespace PIRATE_BAY_GAME
     /// </summary>
     public partial class MainWindow : Window
     {
-        MAIN go = new MAIN();
+        MAIN aboutShip = new MAIN();
+        MAIN_2 aboutBuildings = new MAIN_2();
+        
         System.Timers.Timer timer;
-        private SolidColorBrush brActive = new SolidColorBrush(Colors.ForestGreen);
-        private SolidColorBrush brPassive = new SolidColorBrush(Color.FromRgb(94, 179, 83));
+
+        private static BitmapImage cornFarmIcon_img = new BitmapImage(new Uri("IMGs\\Buildings\\Farm\\icon.png", UriKind.Relative));
+        private ImageBrush cornFarmIcon_Brush = new ImageBrush(cornFarmIcon_img);
+
         private bool isRightPannelActive { get; set; }
         private bool repairBtnClicked { get; set; }
 
         public MainWindow()
         {
             InitializeComponent();
-            go.StartPreparation(resourcesCanvas, shipCanvas, mapCanvas, sailButton, MessageCanvas, newGoldL, armorSpentL, coresSpentL, repairBtn, goldLbl, cornLbl, snacksLbl, armorLbl, coresLbl);
+
+            cornFarmCnvs.Background = cornFarmIcon_Brush;
+
+            aboutShip.StartPreparation(resourcesCanvas, shipCanvas, mapCanvas, sailButton, MessageCanvas, newGoldL, armorSpentL, coresSpentL, repairBtn, goldLbl, cornLbl, snacksLbl, armorLbl, coresLbl);
+            aboutBuildings.StartPreparation(cell_0_0,cell_0_1,cell_0_2,cell_1_0,cell_1_1,cell_1_2,cell_2_0,cell_2_1,cell_2_2);
             timer = new System.Timers.Timer(500);
             timer.Elapsed += timer_Elapsed;
             timer.Start();
@@ -44,18 +52,20 @@ namespace PIRATE_BAY_GAME
             {
                 this.Dispatcher.Invoke(() =>
             {
-                go.TimeTick();
+                aboutShip.TimeTick();
 
                 if (MessageCanvas.Visibility == System.Windows.Visibility.Visible)
                     timer.Stop();
 
-                go.CheckDefferedSail();
+                aboutShip.CheckDefferedSail();
 
                 if (repairBtnClicked)
                 {
-                    go.RepairBtnClick();
+                    aboutShip.RepairBtnClick();
                     repairBtnClicked = false;
                 }
+
+                aboutBuildings.animateBuildings();
             });
             }
             catch (Exception)
@@ -68,8 +78,8 @@ namespace PIRATE_BAY_GAME
             showRightPannelButton.Visibility = System.Windows.Visibility.Hidden;
             hideRightPannelButton.Visibility = System.Windows.Visibility.Visible;
             timer.Stop();
-            go.StopSailing();
-            go.StopRepairing();
+            aboutShip.StopSailing();
+            aboutShip.StopRepairing();
             cells.IsEnabled = false;
             isRightPannelActive = true;
 
@@ -82,8 +92,8 @@ namespace PIRATE_BAY_GAME
             showRightPannelButton.Visibility = System.Windows.Visibility.Visible;
             hideRightPannelButton.Visibility = System.Windows.Visibility.Hidden;
             timer.Start();
-            go.ContinueSalling();
-            go.ContinueRepairing();
+            aboutShip.ContinueSalling();
+            aboutShip.ContinueRepairing();
             isRightPannelActive = false;
         }
 
@@ -92,9 +102,9 @@ namespace PIRATE_BAY_GAME
             if (!repairBtnClicked)
             {
                 if (!isRightPannelActive)
-                    go.StartSailShip();
+                    aboutShip.StartSailShip();
                 else
-                    go.DefferedStartSailShip();
+                    aboutShip.DefferedStartSailShip();
             }
 
         }
@@ -113,99 +123,197 @@ namespace PIRATE_BAY_GAME
 
         private void howToPlay_Btn_Click(object sender, RoutedEventArgs e)
         {
-            go.HowToPlay();
+            aboutShip.HowToPlay();
         }
 
-        #region
+        #region Cells allocation
 
         private void cell_0_0_MouseEnter(object sender, MouseEventArgs e)
         {
-            cell_0_0.Background = brActive;
+            aboutBuildings.ChangeActiveness(0, 0);
         }
 
         private void cell_0_0_MouseLeave(object sender, MouseEventArgs e)
         {
-            cell_0_0.Background = brPassive;
+            aboutBuildings.ChangeActiveness(0, 0);
         }
 
         private void cell_0_1_MouseEnter(object sender, MouseEventArgs e)
         {
-            cell_0_1.Background = brActive;
+            aboutBuildings.ChangeActiveness(0, 1);
         }
 
         private void cell_0_1_MouseLeave(object sender, MouseEventArgs e)
         {
-            cell_0_1.Background = brPassive;
+            aboutBuildings.ChangeActiveness(0, 1);
         }
 
         private void cell_0_2_MouseEnter(object sender, MouseEventArgs e)
         {
-            cell_0_2.Background = brActive;
+            aboutBuildings.ChangeActiveness(0, 2);
         }
 
         private void cell_0_2_MouseLeave(object sender, MouseEventArgs e)
         {
-            cell_0_2.Background = brPassive;
+            aboutBuildings.ChangeActiveness(0, 2);
         }
 
         private void cell_1_0_MouseEnter(object sender, MouseEventArgs e)
         {
-            cell_1_0.Background = brActive;
+            aboutBuildings.ChangeActiveness(1, 0);
         }
 
         private void cell_1_0_MouseLeave(object sender, MouseEventArgs e)
         {
-            cell_1_0.Background = brPassive;
+            aboutBuildings.ChangeActiveness(1, 0);
         }
 
         private void cell_1_1_MouseEnter(object sender, MouseEventArgs e)
         {
-            cell_1_1.Background = brActive;
+            aboutBuildings.ChangeActiveness(1, 1);
         }
 
         private void cell_1_1_MouseLeave(object sender, MouseEventArgs e)
         {
-            cell_1_1.Background = brPassive;
+            aboutBuildings.ChangeActiveness(1, 1);
         }
 
         private void cell_1_2_MouseEnter(object sender, MouseEventArgs e)
         {
-            cell_1_2.Background = brActive;
+            aboutBuildings.ChangeActiveness(1, 2);
         }
 
         private void cell_1_2_MouseLeave(object sender, MouseEventArgs e)
         {
-            cell_1_2.Background = brPassive;
+            aboutBuildings.ChangeActiveness(1, 2);
         }
 
         private void cell_2_0_MouseEnter(object sender, MouseEventArgs e)
         {
-            cell_2_0.Background = brActive;
+            aboutBuildings.ChangeActiveness(2, 0);
         }
 
         private void cell_2_0_MouseLeave(object sender, MouseEventArgs e)
         {
-            cell_2_0.Background = brPassive;
+            aboutBuildings.ChangeActiveness(2, 0);
         }
 
         private void cell_2_1_MouseEnter(object sender, MouseEventArgs e)
         {
-            cell_2_1.Background = brActive;
+            aboutBuildings.ChangeActiveness(2, 1);
         }
 
         private void cell_2_1_MouseLeave(object sender, MouseEventArgs e)
         {
-            cell_2_1.Background = brPassive;
+            aboutBuildings.ChangeActiveness(2, 1);
         }
 
         private void cell_2_2_MouseEnter(object sender, MouseEventArgs e)
         {
-            cell_2_2.Background = brActive;
+            aboutBuildings.ChangeActiveness(2, 2);
         }
 
         private void cell_2_2_MouseLeave(object sender, MouseEventArgs e)
         {
-            cell_2_2.Background = brPassive;
+            aboutBuildings.ChangeActiveness(2, 2);
+        }
+        #endregion
+
+
+
+        private void closeBuildingCanvas_Click(object sender, RoutedEventArgs e)
+        {
+            BuildingCanvas.Visibility = System.Windows.Visibility.Hidden;
+        }
+
+        private void cornFarmBtn_Click(object sender, RoutedEventArgs e)
+        {
+            aboutBuildings.BuildCornFarm();
+            BuildingCanvas.Visibility = System.Windows.Visibility.Hidden;
+        }
+
+        #region Canvases mouse down
+
+        private void cell_0_1_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (aboutBuildings.isEmpty(0, 1))
+            {
+                BuildingCanvas.Visibility = System.Windows.Visibility.Visible;
+                aboutBuildings.ActivateForBuildingCell(0, 1);
+            }
+        }
+
+        private void cell_0_0_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (aboutBuildings.isEmpty(0, 0))
+            {
+                BuildingCanvas.Visibility = System.Windows.Visibility.Visible;
+                aboutBuildings.ActivateForBuildingCell(0, 0);
+            }
+
+        }
+
+        private void cell_0_2_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (aboutBuildings.isEmpty(0, 2))
+            {
+                BuildingCanvas.Visibility = System.Windows.Visibility.Visible;
+                aboutBuildings.ActivateForBuildingCell(0, 2);
+            }
+        }
+
+        private void cell_1_0_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (aboutBuildings.isEmpty(1, 0))
+            {
+                BuildingCanvas.Visibility = System.Windows.Visibility.Visible;
+                aboutBuildings.ActivateForBuildingCell(1, 0);
+            }
+        }
+
+        private void cell_1_1_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (aboutBuildings.isEmpty(1, 1))
+            {
+                BuildingCanvas.Visibility = System.Windows.Visibility.Visible;
+                aboutBuildings.ActivateForBuildingCell(1, 1);
+            }
+        }
+
+        private void cell_1_2_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (aboutBuildings.isEmpty(1, 2))
+            {
+                BuildingCanvas.Visibility = System.Windows.Visibility.Visible;
+                aboutBuildings.ActivateForBuildingCell(1, 2);
+            }
+        }
+
+        private void cell_2_0_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (aboutBuildings.isEmpty(2, 0))
+            {
+                BuildingCanvas.Visibility = System.Windows.Visibility.Visible;
+                aboutBuildings.ActivateForBuildingCell(2, 0);
+            }
+        }
+
+        private void cell_2_1_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (aboutBuildings.isEmpty(2, 1))
+            {
+                BuildingCanvas.Visibility = System.Windows.Visibility.Visible;
+                aboutBuildings.ActivateForBuildingCell(2, 1);
+            }
+        }
+
+        private void cell_2_2_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (aboutBuildings.isEmpty(2, 2))
+            {
+                BuildingCanvas.Visibility = System.Windows.Visibility.Visible;
+                aboutBuildings.ActivateForBuildingCell(2, 2);
+            }
         }
         #endregion
     }

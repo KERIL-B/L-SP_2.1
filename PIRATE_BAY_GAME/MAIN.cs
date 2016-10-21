@@ -17,6 +17,7 @@ namespace PIRATE_BAY_GAME
 {
     class MAIN
     {
+        #region InitializeComponent..
         Random rand = new Random();
         Map MapClass = new Map();
         Ship ShipClass = new Ship();
@@ -24,6 +25,8 @@ namespace PIRATE_BAY_GAME
 
         System.Timers.Timer shipSailTimer;
         System.Timers.Timer shipRepairTimer;
+
+
 
         private bool defferedSail { get; set; }
 
@@ -37,6 +40,7 @@ namespace PIRATE_BAY_GAME
         private Canvas shipCanvas;
         private Canvas mapCanvas;
         private Canvas messageCanvas;
+
 
         private Button sailButton;
         private Button repairBtn;
@@ -66,7 +70,7 @@ namespace PIRATE_BAY_GAME
         private ImageBrush messageBG_shortOfSnacks_B = new ImageBrush(messageBG_shortOfSnacks_IMG);
         static private BitmapImage messageBG_howToPlay_IMG = new BitmapImage(new Uri("IMGs\\Messages\\messageBackground_HowToPlay.png", UriKind.Relative));
         private ImageBrush messageBG_howToPlay_B = new ImageBrush(messageBG_howToPlay_IMG);
-
+        #endregion
 
         public void StopRepairing()
         {
