@@ -164,8 +164,15 @@ namespace PIRATE_BAY_GAME
         }
          static public void ChangeSnacksValue(int n)
         {
-            snacks += n;
-            snacksLbl.Content = snacks;
+            try
+            {
+                snacksLbl.Dispatcher.Invoke(() =>
+                    {
+                        snacks += n;
+                        snacksLbl.Content = snacks;
+                    });
+            }
+            catch (Exception) { }
         }
          static public void ChangeArmorValue(int n)
         {

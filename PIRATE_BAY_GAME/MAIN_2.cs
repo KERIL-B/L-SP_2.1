@@ -43,9 +43,9 @@ namespace PIRATE_BAY_GAME
 
         public bool isEmpty(int i, int j)
         {
-             return (cells[i,j].building!=null)?(false):(true);
+            return (cells[i, j].building != null) ? (false) : (true);
         }
-        
+
         public void ChangeActiveness(int i, int j)
         {
             if (cells[i, j].building == null)
@@ -66,23 +66,33 @@ namespace PIRATE_BAY_GAME
             cells[activeForBuildingCellX, activeForBuildingCellY].building = new CornFarm(cells[activeForBuildingCellX, activeForBuildingCellY].canvas);
 
         }
+
+        public void BuildKitchen()
+        {
+            MyResources.ChangeGoldValue(-30);
+            cells[activeForBuildingCellX, activeForBuildingCellY].building = new Kitchen(cells[activeForBuildingCellX, activeForBuildingCellY].canvas);
+        }
+
         public void animateBuildings()
         {
             for (int i = 0; i < 3; i++)
                 for (int j = 0; j < 3; j++)
                 {
                     if (cells[i, j].building != null)
-                        cells[i, j].building.Animate();
+                    {
+                        if (!cells[i, j].building.isBuilding)
+                            cells[i, j].building.Animate();
+                    }
                 }
         }
 
         public void TimeStop()
         {
-            for (int i=0;i<3;i++)
+            for (int i = 0; i < 3; i++)
                 for (int j = 0; j < 3; j++)
                 {
-                    if(cells[i,j].building!=null)
-                    cells[i, j].building.TimerPause(); 
+                    if (cells[i, j].building != null)
+                        cells[i, j].building.TimerPause();
                 }
         }
 
@@ -92,7 +102,7 @@ namespace PIRATE_BAY_GAME
                 for (int j = 0; j < 3; j++)
                 {
                     if (cells[i, j].building != null)
-                    cells[i, j].building.TimerGoOn();
+                        cells[i, j].building.TimerGoOn();
                 }
         }
     }

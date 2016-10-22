@@ -55,6 +55,7 @@ namespace PIRATE_BAY_GAME
             {
                 this.Dispatcher.Invoke(() =>
             {
+                #region Ship/map
                 aboutShip.TimeTick();
 
                 if (MessageCanvas.Visibility == System.Windows.Visibility.Visible)
@@ -67,8 +68,12 @@ namespace PIRATE_BAY_GAME
                     aboutShip.RepairBtnClick();
                     repairBtnClicked = false;
                 }
-
+                #endregion
+                #region Buildings
+                
                 aboutBuildings.animateBuildings();
+               
+                #endregion
             });
             }
             catch (Exception)
@@ -331,5 +336,23 @@ namespace PIRATE_BAY_GAME
             }
         }
         #endregion
+
+        private void kitchen_Click(object sender, RoutedEventArgs e)
+        {
+            if (MyResources.CheckGold() > 30)
+            {
+                aboutBuildings.BuildKitchen();
+            }
+            else
+            {
+                MessageCanvas.Background = messageBG_B;
+                MessageCanvas.Visibility = System.Windows.Visibility.Visible;
+                newGoldL.Visibility = System.Windows.Visibility.Hidden;
+                coresSpentL.Visibility = System.Windows.Visibility.Hidden;
+                armorSpentL.Visibility = System.Windows.Visibility.Hidden;
+
+            }
+            BuildingCanvas.Visibility = System.Windows.Visibility.Hidden;
+        }
     }
 }

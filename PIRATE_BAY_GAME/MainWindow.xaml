@@ -137,7 +137,11 @@
                     <Image Source="E:\vs2012\1progs\3dSemestr\PIRATE_BAY_GAME\PIRATE_BAY_GAME\bin\Debug\IMGs\Buildings\Farm\icon.png" />
                 </StackPanel>
             </Button>
-            <Button x:Name="kitchen" Width="170" Height="135" Margin="25,185" BorderBrush="Black" Background="{x:Null}"></Button>
+            <Button x:Name="kitchen" Width="170" Height="135" Margin="25,185" BorderBrush="Black" Background="{x:Null}" Click="kitchen_Click">
+                <StackPanel>
+                    <Image Source="E:\vs2012\1progs\3dSemestr\PIRATE_BAY_GAME\PIRATE_BAY_GAME\bin\Debug\IMGs\Buildings\Kitchen\icon.png" />
+                </StackPanel>
+            </Button>
             <Button x:Name="armory" Width="170" Height="135" Margin="205,40" BorderBrush="Black" Background="{x:Null}"></Button>
             <Button x:Name="foundry" Width="170" Height="135" Margin="205,185" BorderBrush="Black" Background="{x:Null}"></Button>
             
