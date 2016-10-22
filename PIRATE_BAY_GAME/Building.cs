@@ -17,7 +17,6 @@ namespace PIRATE_BAY_GAME
 {
     class Building
     {
-        protected bool canWork { get; set; }
         public bool animStatus { get; set; }
         public int hp { get; set; }
         protected Canvas canvas { get; set; }
@@ -43,7 +42,7 @@ namespace PIRATE_BAY_GAME
 
         }
 
-        protected void StarWork()
+        public virtual void StartWork()
         {
             timerWorking = new System.Timers.Timer(250);
             isBuilding = false;
@@ -54,7 +53,6 @@ namespace PIRATE_BAY_GAME
             isTimerWork = true;
             timerWorking.Start();
         }
-
 
         protected virtual void timerWorking_Elapsed(object sender, System.Timers.ElapsedEventArgs e) { }
 
@@ -85,15 +83,15 @@ namespace PIRATE_BAY_GAME
 
         }
 
-        protected void timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        protected virtual void timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-            
+
             time++;
             DrawBuildPB(time);
             if (time == 100)
             {
                 time = 0;
-                StarWork();
+                StartWork();
                 timerBuilding.Stop();
             }
         }
@@ -196,6 +194,7 @@ namespace PIRATE_BAY_GAME
 
     class Kitchen : Building
     {
+       // private int kitchenTime { get; set; }
         Random rand = new Random();
         private static BitmapImage kitchen_0_img = new BitmapImage(new Uri("IMGs\\Buildings\\Kitchen\\0.png", UriKind.Relative));
         private static BitmapImage kitchen_1_img = new BitmapImage(new Uri("IMGs\\Buildings\\Kitchen\\1.png", UriKind.Relative));
@@ -204,30 +203,50 @@ namespace PIRATE_BAY_GAME
         private ImageBrush kitchen_1_Brush = new ImageBrush(kitchen_1_img);
         private ImageBrush kitchen_2_Brush = new ImageBrush(kitchen_2_img);
 
+        public bool isWorking { get; set; }
+
         public Kitchen(Canvas canvas)
             : base(canvas)
         {
             canvas.Background = kitchen_0_Brush;
+            isWorking = true;
+            time = 0;
         }
+
+        public override void StartWork()
+        {
+            isWorking = true;
+            MyResources.ChangeCornValue(-2);
+            base.StartWork();
+
+        }
+        protected override void timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            time++;
+            DrawBuildPB(time);
+            if (time == 100)
+            {
+                time = 0;
+                timerBuilding.Stop();
+                isWorking = false;
+                isBuilding = false;
+                DrawProgressBar(0);
+            }
+        }
+
 
         protected override void timerWorking_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-            if (time == 0)
-            {
-                canWork=(MyResources.CheckCorn()>=2)?(true):(false);
-                if (canWork)
-                    MyResources.ChangeCornValue(-2);
-            }
-            if (canWork)
-            {
-                time++;
+            time++;
 
-                if (time == 100)
-                {
-                    time = 0;
-                    MyResources.ChangeSnacksValue(1);
-                }
+            if (time == 100)
+            {
+               time = 0;
+                MyResources.ChangeSnacksValue(1);
+                isWorking = false;
+                timerWorking.Stop();
             }
+
             base.DrawProgressBar(time);
         }
 

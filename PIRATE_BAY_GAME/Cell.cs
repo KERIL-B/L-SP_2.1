@@ -18,9 +18,6 @@ namespace PIRATE_BAY_GAME
 {
     class Cell
     {
-
-
-
         public bool isActive { get; set; }
         public Building building { get; set; }
         public Canvas canvas;

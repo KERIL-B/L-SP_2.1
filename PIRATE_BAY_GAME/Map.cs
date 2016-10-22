@@ -102,7 +102,7 @@ namespace PIRATE_BAY_GAME
             status = !status;
         }
     }
-    
+
     static class MyResources
     {
         static public Label goldLbl;
@@ -116,41 +116,41 @@ namespace PIRATE_BAY_GAME
 
         static private int gold { get; set; }
 
-         static private int corn { get; set; }
-         static  private int snacks { get; set; }
-         static private int armor { get; set; }
-         static private int cores { get; set; }
+        static private int corn { get; set; }
+        static private int snacks { get; set; }
+        static private int armor { get; set; }
+        static private int cores { get; set; }
 
         #region Check Resources
-         static public int CheckGold()
+        static public int CheckGold()
         {
             return gold;
         }
-         static public int CheckCorn()
+        static public int CheckCorn()
         {
             return corn;
         }
-         static public int CheckSnacks()
+        static public int CheckSnacks()
         {
             return snacks;
         }
-         static public int CheckArmor()
+        static public int CheckArmor()
         {
             return armor;
         }
-         static public int CheckCores()
+        static public int CheckCores()
         {
             return cores;
         }
         #endregion
 
-        #region Chabge Resources
-         static public void ChangeGoldValue(int n)
+        #region Change Resources
+        static public void ChangeGoldValue(int n)
         {
             gold += n;
             goldLbl.Content = gold;
         }
-         static public void ChangeCornValue(int n)
+        static public void ChangeCornValue(int n)
         {
             try
             {
@@ -162,7 +162,7 @@ namespace PIRATE_BAY_GAME
             }
             catch (Exception) { }
         }
-         static public void ChangeSnacksValue(int n)
+        static public void ChangeSnacksValue(int n)
         {
             try
             {
@@ -174,18 +174,18 @@ namespace PIRATE_BAY_GAME
             }
             catch (Exception) { }
         }
-         static public void ChangeArmorValue(int n)
+        static public void ChangeArmorValue(int n)
         {
             armor += n;
             armorLbl.Content = armor;
         }
-         static public void ChangeCoresValue(int n)
+        static public void ChangeCoresValue(int n)
         {
             cores += n;
             coresLbl.Content = cores;
         }
         #endregion
-         static public void SetBackground(Canvas canvas)
+        static public void SetBackground(Canvas canvas)
         {
             canvas.Background = resourcesPannel_B;
         }

@@ -25,11 +25,15 @@ namespace PIRATE_BAY_GAME
 
         System.Timers.Timer timer;
 
-        private static BitmapImage cornFarmIcon_img = new BitmapImage(new Uri("IMGs\\Buildings\\Farm\\icon.png", UriKind.Relative));
+        private static BitmapImage cornFarmIcon_img = new BitmapImage(new Uri("IMGs\\Buildings\\Farm\\Description.png", UriKind.Relative));
         private ImageBrush cornFarmIcon_Brush = new ImageBrush(cornFarmIcon_img);
+        private static BitmapImage kitchenIcon_img = new BitmapImage(new Uri("IMGs\\Buildings\\Kitchen\\Description.png", UriKind.Relative));
+        private ImageBrush kitchenIcon_Brush = new ImageBrush(kitchenIcon_img);
 
         private static BitmapImage messageBG_IMG = new BitmapImage(new Uri("IMGs\\Messages\\messageBackground_ noGold.png", UriKind.Relative));
         private ImageBrush messageBG_B = new ImageBrush(messageBG_IMG);
+        private static BitmapImage messageBG_B_IMG = new BitmapImage(new Uri("IMGs\\Messages\\messageBackground_build.png", UriKind.Relative));
+        private ImageBrush messageBG_B_B = new ImageBrush(messageBG_B_IMG);
 
         private bool isRightPannelActive { get; set; }
         private bool repairBtnClicked { get; set; }
@@ -39,6 +43,8 @@ namespace PIRATE_BAY_GAME
             InitializeComponent();
 
             cornFarmCnvs.Background = cornFarmIcon_Brush;
+            kitchenCnvs.Background = kitchenIcon_Brush;
+            BuildingCanvas.Background = messageBG_B_B;
 
             aboutShip.StartPreparation(resourcesCanvas, shipCanvas, mapCanvas, sailButton, MessageCanvas, newGoldL, armorSpentL, coresSpentL, repairBtn, goldLbl, cornLbl, snacksLbl, armorLbl, coresLbl);
             aboutBuildings.StartPreparation(cell_0_0, cell_0_1, cell_0_2, cell_1_0, cell_1_1, cell_1_2, cell_2_0, cell_2_1, cell_2_2);

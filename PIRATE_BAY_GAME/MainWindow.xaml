@@ -105,7 +105,13 @@
                     <Image Source="E:\vs2012\1progs\3dSemestr\PIRATE_BAY_GAME\PIRATE_BAY_GAME\bin\Debug\IMGs\Buttons\howToPlayBtn.png"/>
                 </StackPanel>
             </Button>
-            <Canvas x:Name="cornFarmCnvs" VerticalAlignment="Top" HorizontalAlignment="Right" Width="85" Height="67.5" Margin="10,60">
+            <Canvas x:Name="cornFarmCnvs" VerticalAlignment="Top" HorizontalAlignment="Right" Width="280" Height="70" Margin="10,60">
+                <Canvas.Background>
+                    <ImageBrush/>
+                </Canvas.Background>
+            </Canvas>
+
+            <Canvas x:Name="kitchenCnvs" VerticalAlignment="Top" HorizontalAlignment="Right" Width="280" Height="70" Margin="10,140">
                 <Canvas.Background>
                     <ImageBrush/>
                 </Canvas.Background>

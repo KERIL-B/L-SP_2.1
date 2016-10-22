@@ -17,6 +17,9 @@ namespace PIRATE_BAY_GAME
 {
     class MAIN_2
     {
+        List<Kitchen> kitchenList = new List<Kitchen>();
+        System.Timers.Timer kitchenTimer = new System.Timers.Timer(1);
+
         private SolidColorBrush brActive = new SolidColorBrush(Colors.ForestGreen);
         private SolidColorBrush brPassive = new SolidColorBrush(Color.FromRgb(94, 179, 83));
 
@@ -39,6 +42,19 @@ namespace PIRATE_BAY_GAME
             cells[2, 0] = new Cell(cell_2_0);
             cells[2, 1] = new Cell(cell_2_1);
             cells[2, 2] = new Cell(cell_2_2);
+            kitchenTimer.Elapsed += kitchenTimer_Elapsed;
+            kitchenTimer.Start();
+        }
+
+        void kitchenTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            for (int i = 0; i < kitchenList.Count; i++)
+            {
+                if (!kitchenList[i].isWorking)
+                    if (MyResources.CheckCorn()>=2)
+                    kitchenList[i].StartWork();
+            }
+            
         }
 
         public bool isEmpty(int i, int j)
@@ -60,6 +76,7 @@ namespace PIRATE_BAY_GAME
             activeForBuildingCellX = i;
             activeForBuildingCellY = j;
         }
+        
         public void BuildCornFarm()
         {
             MyResources.ChangeGoldValue(-30);
@@ -69,8 +86,10 @@ namespace PIRATE_BAY_GAME
 
         public void BuildKitchen()
         {
+
             MyResources.ChangeGoldValue(-30);
             cells[activeForBuildingCellX, activeForBuildingCellY].building = new Kitchen(cells[activeForBuildingCellX, activeForBuildingCellY].canvas);
+            kitchenList.Add(cells[activeForBuildingCellX, activeForBuildingCellY].building as Kitchen);
         }
 
         public void animateBuildings()
