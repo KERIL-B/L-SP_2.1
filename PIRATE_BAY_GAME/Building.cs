@@ -44,7 +44,7 @@ namespace PIRATE_BAY_GAME
 
         public virtual void StartWork()
         {
-            timerWorking = new System.Timers.Timer(250);
+            //timerWorking = new System.Timers.Timer(250);
             isBuilding = false;
             animStatus = true;
             DrawProgressBar(0);
@@ -172,6 +172,12 @@ namespace PIRATE_BAY_GAME
             canvas.Background = cornFarm_0_Brush;
         }
 
+        public override void StartWork()
+        {
+            timerWorking = new System.Timers.Timer(400);
+            base.StartWork();
+        }
+
         protected override void timerWorking_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
             time++;
@@ -194,7 +200,6 @@ namespace PIRATE_BAY_GAME
 
     class Kitchen : Building
     {
-       // private int kitchenTime { get; set; }
         Random rand = new Random();
         private static BitmapImage kitchen_0_img = new BitmapImage(new Uri("IMGs\\Buildings\\Kitchen\\0.png", UriKind.Relative));
         private static BitmapImage kitchen_1_img = new BitmapImage(new Uri("IMGs\\Buildings\\Kitchen\\1.png", UriKind.Relative));
@@ -215,6 +220,7 @@ namespace PIRATE_BAY_GAME
 
         public override void StartWork()
         {
+            timerWorking = new System.Timers.Timer(250);
             isWorking = true;
             MyResources.ChangeCornValue(-2);
             base.StartWork();
@@ -241,7 +247,7 @@ namespace PIRATE_BAY_GAME
 
             if (time == 100)
             {
-               time = 0;
+                time = 0;
                 MyResources.ChangeSnacksValue(1);
                 isWorking = false;
                 timerWorking.Stop();
@@ -257,5 +263,85 @@ namespace PIRATE_BAY_GAME
             canvas.Background = (animStatus) ? (kitchen_1_Brush) : (kitchen_2_Brush);
         }
 
+    }
+
+    class Armory : Building
+    {
+        private static BitmapImage armory_0_img = new BitmapImage(new Uri("IMGs\\Buildings\\Armory\\0.png", UriKind.Relative));
+        private static BitmapImage armory_1_img = new BitmapImage(new Uri("IMGs\\Buildings\\Armory\\1.png", UriKind.Relative));
+        private static BitmapImage armory_2_img = new BitmapImage(new Uri("IMGs\\Buildings\\Armory\\2.png", UriKind.Relative));
+        private ImageBrush armory_0_Brush = new ImageBrush(armory_0_img);
+        private ImageBrush armory_1_Brush = new ImageBrush(armory_1_img);
+        private ImageBrush armory_2_Brush = new ImageBrush(armory_2_img);
+
+        public Armory(Canvas canvas)
+            : base(canvas)
+        {
+            canvas.Background = armory_0_Brush;
+        }
+
+        public override void StartWork()
+        {
+            timerWorking = new System.Timers.Timer(1000);
+            base.StartWork();
+        }
+
+        protected override void timerWorking_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            time++;
+            base.DrawProgressBar(time);
+            if (time == 100)
+            {
+                time = 0;
+                MyResources.ChangeCoresValue(1);
+            }
+        }
+
+        public override void Animate()
+        {
+            base.Animate();
+            canvas.Background = (animStatus) ? (armory_1_Brush) : (armory_2_Brush);
+        }
+
+
+    }
+
+    class Foundry : Building
+    {
+        private static BitmapImage foundry_0_img = new BitmapImage(new Uri("IMGs\\Buildings\\Foundry\\0.png", UriKind.Relative));
+        private static BitmapImage foundry_1_img = new BitmapImage(new Uri("IMGs\\Buildings\\Foundry\\1.png", UriKind.Relative));
+        private static BitmapImage foundry_2_img = new BitmapImage(new Uri("IMGs\\Buildings\\Foundry\\2.png", UriKind.Relative));
+        private ImageBrush foundry_0_Brush = new ImageBrush(foundry_0_img);
+        private ImageBrush foundry_1_Brush = new ImageBrush(foundry_1_img);
+        private ImageBrush foundry_2_Brush = new ImageBrush(foundry_2_img);
+
+        public Foundry(Canvas canvas)
+            : base(canvas)
+        {
+            canvas.Background = foundry_0_Brush;
+        }
+
+        public override void StartWork()
+        {
+            timerWorking = new System.Timers.Timer(800);
+            base.StartWork();
+        }
+
+        protected override void timerWorking_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            time++;
+            base.DrawProgressBar(time);
+            if (time == 100)
+            {
+                time = 0;
+                MyResources.ChangeArmorValue(1);
+            }
+        }
+
+        public override void Animate()
+        {
+            base.Animate();
+            canvas.Background = (animStatus) ? (foundry_1_Brush) : (foundry_2_Brush);
+        }
     }
 }

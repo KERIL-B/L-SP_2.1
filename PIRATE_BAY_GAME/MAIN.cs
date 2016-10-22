@@ -116,11 +116,11 @@ namespace PIRATE_BAY_GAME
             MyResources.coresLbl = coresLbl;
 
             MyResources.SetBackground(resorcesCanvas);
-            MyResources.ChangeGoldValue(100);
+            MyResources.ChangeGoldValue(140);
             MyResources.ChangeCornValue(10);
             MyResources.ChangeSnacksValue(10);
-            MyResources.ChangeArmorValue(10);
-            MyResources.ChangeCoresValue(10);
+            MyResources.ChangeArmorValue(0);
+            MyResources.ChangeCoresValue(0);
 
         }
 

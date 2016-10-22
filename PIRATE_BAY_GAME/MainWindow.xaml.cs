@@ -29,6 +29,10 @@ namespace PIRATE_BAY_GAME
         private ImageBrush cornFarmIcon_Brush = new ImageBrush(cornFarmIcon_img);
         private static BitmapImage kitchenIcon_img = new BitmapImage(new Uri("IMGs\\Buildings\\Kitchen\\Description.png", UriKind.Relative));
         private ImageBrush kitchenIcon_Brush = new ImageBrush(kitchenIcon_img);
+        private static BitmapImage armoryIcon_img = new BitmapImage(new Uri("IMGs\\Buildings\\Armory\\Description.png", UriKind.Relative));
+        private ImageBrush armoryIcon_Brush = new ImageBrush(armoryIcon_img);
+        private static BitmapImage foundryIcon_img = new BitmapImage(new Uri("IMGs\\Buildings\\Foundry\\Description.png", UriKind.Relative));
+        private ImageBrush foundryIcon_Brush = new ImageBrush(foundryIcon_img);
 
         private static BitmapImage messageBG_IMG = new BitmapImage(new Uri("IMGs\\Messages\\messageBackground_ noGold.png", UriKind.Relative));
         private ImageBrush messageBG_B = new ImageBrush(messageBG_IMG);
@@ -44,6 +48,9 @@ namespace PIRATE_BAY_GAME
 
             cornFarmCnvs.Background = cornFarmIcon_Brush;
             kitchenCnvs.Background = kitchenIcon_Brush;
+            armoryCnvs.Background = armoryIcon_Brush;
+            foundryCnvs.Background = foundryIcon_Brush;
+
             BuildingCanvas.Background = messageBG_B_B;
 
             aboutShip.StartPreparation(resourcesCanvas, shipCanvas, mapCanvas, sailButton, MessageCanvas, newGoldL, armorSpentL, coresSpentL, repairBtn, goldLbl, cornLbl, snacksLbl, armorLbl, coresLbl);
@@ -76,9 +83,9 @@ namespace PIRATE_BAY_GAME
                 }
                 #endregion
                 #region Buildings
-                
+
                 aboutBuildings.animateBuildings();
-               
+
                 #endregion
             });
             }
@@ -240,24 +247,6 @@ namespace PIRATE_BAY_GAME
             BuildingCanvas.Visibility = System.Windows.Visibility.Hidden;
         }
 
-        private void cornFarmBtn_Click(object sender, RoutedEventArgs e)
-        {
-            if (MyResources.CheckGold() > 30)
-            {
-                aboutBuildings.BuildCornFarm();
-            }
-            else
-            {
-                MessageCanvas.Background = messageBG_B;
-                MessageCanvas.Visibility = System.Windows.Visibility.Visible;
-                newGoldL.Visibility = System.Windows.Visibility.Hidden;
-                coresSpentL.Visibility = System.Windows.Visibility.Hidden;
-                armorSpentL.Visibility = System.Windows.Visibility.Hidden;
-
-            }
-            BuildingCanvas.Visibility = System.Windows.Visibility.Hidden;
-        }
-
         #region Canvases mouse down
 
         private void cell_0_1_MouseDown(object sender, MouseButtonEventArgs e)
@@ -345,7 +334,7 @@ namespace PIRATE_BAY_GAME
 
         private void kitchen_Click(object sender, RoutedEventArgs e)
         {
-            if (MyResources.CheckGold() > 30)
+            if (MyResources.CheckGold() >= 30)
             {
                 aboutBuildings.BuildKitchen();
             }
@@ -360,5 +349,61 @@ namespace PIRATE_BAY_GAME
             }
             BuildingCanvas.Visibility = System.Windows.Visibility.Hidden;
         }
+
+        private void armory_Click(object sender, RoutedEventArgs e)
+        {
+            if (MyResources.CheckGold() >= 40)
+            {
+                aboutBuildings.BuildArmory();
+            }
+            else
+            {
+                MessageCanvas.Background = messageBG_B;
+                MessageCanvas.Visibility = System.Windows.Visibility.Visible;
+                newGoldL.Visibility = System.Windows.Visibility.Hidden;
+                coresSpentL.Visibility = System.Windows.Visibility.Hidden;
+                armorSpentL.Visibility = System.Windows.Visibility.Hidden;
+
+            }
+            BuildingCanvas.Visibility = System.Windows.Visibility.Hidden;
+
+        }
+
+        private void cornFarmBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (MyResources.CheckGold() >= 30)
+            {
+                aboutBuildings.BuildCornFarm();
+            }
+            else
+            {
+                MessageCanvas.Background = messageBG_B;
+                MessageCanvas.Visibility = System.Windows.Visibility.Visible;
+                newGoldL.Visibility = System.Windows.Visibility.Hidden;
+                coresSpentL.Visibility = System.Windows.Visibility.Hidden;
+                armorSpentL.Visibility = System.Windows.Visibility.Hidden;
+
+            }
+            BuildingCanvas.Visibility = System.Windows.Visibility.Hidden;
+        }
+
+        private void foundry_Click(object sender, RoutedEventArgs e)
+        {
+            if (MyResources.CheckGold() >= 40)
+            {
+                aboutBuildings.BuildFoundry();
+            }
+            else
+            {
+                MessageCanvas.Background = messageBG_B;
+                MessageCanvas.Visibility = System.Windows.Visibility.Visible;
+                newGoldL.Visibility = System.Windows.Visibility.Hidden;
+                coresSpentL.Visibility = System.Windows.Visibility.Hidden;
+                armorSpentL.Visibility = System.Windows.Visibility.Hidden;
+
+            }
+            BuildingCanvas.Visibility = System.Windows.Visibility.Hidden;
+        }
+
     }
 }

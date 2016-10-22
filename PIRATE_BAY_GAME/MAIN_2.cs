@@ -51,10 +51,10 @@ namespace PIRATE_BAY_GAME
             for (int i = 0; i < kitchenList.Count; i++)
             {
                 if (!kitchenList[i].isWorking)
-                    if (MyResources.CheckCorn()>=2)
-                    kitchenList[i].StartWork();
+                    if (MyResources.CheckCorn() >= 2)
+                        kitchenList[i].StartWork();
             }
-            
+
         }
 
         public bool isEmpty(int i, int j)
@@ -76,7 +76,7 @@ namespace PIRATE_BAY_GAME
             activeForBuildingCellX = i;
             activeForBuildingCellY = j;
         }
-        
+
         public void BuildCornFarm()
         {
             MyResources.ChangeGoldValue(-30);
@@ -90,6 +90,18 @@ namespace PIRATE_BAY_GAME
             MyResources.ChangeGoldValue(-30);
             cells[activeForBuildingCellX, activeForBuildingCellY].building = new Kitchen(cells[activeForBuildingCellX, activeForBuildingCellY].canvas);
             kitchenList.Add(cells[activeForBuildingCellX, activeForBuildingCellY].building as Kitchen);
+        }
+
+        public void BuildArmory()
+        {
+            MyResources.ChangeGoldValue(-40);
+            cells[activeForBuildingCellX, activeForBuildingCellY].building = new Armory(cells[activeForBuildingCellX, activeForBuildingCellY].canvas);
+        }
+
+        public void BuildFoundry()
+        {
+            MyResources.ChangeGoldValue(-40);
+            cells[activeForBuildingCellX, activeForBuildingCellY].building = new Foundry(cells[activeForBuildingCellX, activeForBuildingCellY].canvas);
         }
 
         public void animateBuildings()

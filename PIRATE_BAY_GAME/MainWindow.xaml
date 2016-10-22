@@ -117,6 +117,18 @@
                 </Canvas.Background>
             </Canvas>
 
+            <Canvas x:Name="foundryCnvs" VerticalAlignment="Top" HorizontalAlignment="Right" Width="280" Height="70" Margin="10,220">
+                <Canvas.Background>
+                    <ImageBrush/>
+                </Canvas.Background>
+            </Canvas>
+
+            <Canvas x:Name="armoryCnvs" VerticalAlignment="Top" HorizontalAlignment="Right" Width="280" Height="70" Margin="10,300">
+                <Canvas.Background>
+                    <ImageBrush/>
+                </Canvas.Background>
+            </Canvas>
+
         </Canvas>
 
         <Canvas x:Name="MessageCanvas" HorizontalAlignment="Center" VerticalAlignment="Center" Width="400" Height="200" Visibility="Hidden">
@@ -148,8 +160,16 @@
                     <Image Source="E:\vs2012\1progs\3dSemestr\PIRATE_BAY_GAME\PIRATE_BAY_GAME\bin\Debug\IMGs\Buildings\Kitchen\icon.png" />
                 </StackPanel>
             </Button>
-            <Button x:Name="armory" Width="170" Height="135" Margin="205,40" BorderBrush="Black" Background="{x:Null}"></Button>
-            <Button x:Name="foundry" Width="170" Height="135" Margin="205,185" BorderBrush="Black" Background="{x:Null}"></Button>
+            <Button x:Name="armory" Width="170" Height="135" Margin="205,40" BorderBrush="Black" Background="{x:Null}" Click="armory_Click">
+                <StackPanel>
+                    <Image Source="E:\vs2012\1progs\3dSemestr\PIRATE_BAY_GAME\PIRATE_BAY_GAME\bin\Debug\IMGs\Buildings\Armory\icon.png" />
+                </StackPanel>
+            </Button>
+            <Button x:Name="foundry" Width="170" Height="135" Margin="205,185" BorderBrush="Black" Background="{x:Null}" Click="foundry_Click">
+                <StackPanel>
+                    <Image Source="E:\vs2012\1progs\3dSemestr\PIRATE_BAY_GAME\PIRATE_BAY_GAME\bin\Debug\IMGs\Buildings\Foundry\icon.png" />
+                </StackPanel>
+            </Button>
             
             <Button x:Name="closeBuildingCanvas" HorizontalAlignment="Right" VerticalAlignment="Top" Height="30" Width="30" Canvas.Left="363" Canvas.Top="9" Background="{x:Null}" BorderBrush="{x:Null}" Click="closeBuildingCanvas_Click">
                 <StackPanel>

@@ -176,13 +176,27 @@ namespace PIRATE_BAY_GAME
         }
         static public void ChangeArmorValue(int n)
         {
-            armor += n;
-            armorLbl.Content = armor;
+            try
+            {
+                armorLbl.Dispatcher.Invoke(() =>
+                    {
+                        armor += n;
+                        armorLbl.Content = armor;
+                    });
+            }
+            catch (Exception) { }
         }
         static public void ChangeCoresValue(int n)
         {
-            cores += n;
-            coresLbl.Content = cores;
+            try
+            {
+                coresLbl.Dispatcher.Invoke(() =>
+                    {
+                        cores += n;
+                        coresLbl.Content = cores;
+                    });
+            }
+            catch (Exception) { }
         }
         #endregion
         static public void SetBackground(Canvas canvas)
