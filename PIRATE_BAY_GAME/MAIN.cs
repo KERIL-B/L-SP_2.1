@@ -21,10 +21,11 @@ namespace PIRATE_BAY_GAME
         Random rand = new Random();
         Map MapClass = new Map();
         Ship ShipClass = new Ship();
-       // Resources ResourcesClass = new Resources();
+        // Resources ResourcesClass = new Resources();
 
         System.Timers.Timer shipSailTimer;
         System.Timers.Timer shipRepairTimer;
+        System.Timers.Timer equipShipTimer;
 
 
 
@@ -109,6 +110,10 @@ namespace PIRATE_BAY_GAME
             this.coresSpentL = coresSpentL;
             this.repairBtn = repairBtn;
 
+            equipShipTimer = new System.Timers.Timer(1);
+            equipShipTimer.Elapsed += equipShipTimer_Elapsed;
+            equipShipTimer.Start();
+
             MyResources.goldLbl = goldLbl;
             MyResources.cornLbl = cornLbl;
             MyResources.snacksLbl = snacksLbl;
@@ -116,12 +121,43 @@ namespace PIRATE_BAY_GAME
             MyResources.coresLbl = coresLbl;
 
             MyResources.SetBackground(resorcesCanvas);
-            MyResources.ChangeGoldValue(140);
+            MyResources.ChangeGoldValue(100);
             MyResources.ChangeCornValue(10);
             MyResources.ChangeSnacksValue(10);
             MyResources.ChangeArmorValue(0);
             MyResources.ChangeCoresValue(0);
 
+        }
+
+        void equipShipTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            if (ShipClass.armor != 10)
+            {
+                if (10 - ShipClass.armor > MyResources.CheckArmor())
+                {
+                    ShipClass.armor += MyResources.CheckArmor();
+                    MyResources.ChangeArmorValue(-MyResources.CheckArmor());
+                }
+                else
+                {
+                    MyResources.ChangeArmorValue(-(10 - ShipClass.armor));
+                    ShipClass.armor = 10;
+                }
+            }
+            if (ShipClass.cores != 10)
+            {
+                if (10-ShipClass.cores > MyResources.CheckCores())
+                {
+                    ShipClass.cores += MyResources.CheckCores();
+                    MyResources.ChangeCoresValue(-MyResources.CheckCores());
+                }
+                else
+                {
+                    MyResources.ChangeCoresValue(-(10 - ShipClass.cores));
+                    ShipClass.cores = 10;
+                }
+
+            }
         }
 
         public void DefferedStartSailShip()
@@ -188,7 +224,7 @@ namespace PIRATE_BAY_GAME
 
         public void RepairBtnClick()
         {
-            if ((!isSailing)&&(!defferedSail))
+            if ((!isSailing) && (!defferedSail))
             {
                 isRepairing = true;
                 sailButton.IsEnabled = false;
@@ -299,7 +335,7 @@ namespace PIRATE_BAY_GAME
             armorSpentL.Content = Convert.ToString(armorSpent);
             coresSpentL.Content = Convert.ToString(coresSpent);
 
-           MyResources.ChangeGoldValue(gold);
+            MyResources.ChangeGoldValue(gold);
 
             ShipClass.armor = (ShipClass.armor - armorSpent < 0) ? (0) : (ShipClass.armor - armorSpent);
             ShipClass.cores = (ShipClass.cores - coresSpent < 0) ? (0) : (ShipClass.cores - coresSpent);
