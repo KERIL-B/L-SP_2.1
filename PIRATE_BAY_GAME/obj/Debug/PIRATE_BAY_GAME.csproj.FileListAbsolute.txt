@@ -11,3 +11,8 @@ E:\vs2012\1progs\3dSemestr\PIRATE_BAY_GAME\PIRATE_BAY_GAME\obj\Debug\PIRATE_BAY_
 E:\vs2012\1progs\3dSemestr\PIRATE_BAY_GAME\PIRATE_BAY_GAME\obj\Debug\PIRATE_BAY_GAME.csproj.GenerateResource.Cache
 E:\vs2012\1progs\3dSemestr\PIRATE_BAY_GAME\PIRATE_BAY_GAME\obj\Debug\PIRATE_BAY_GAME.exe
 E:\vs2012\1progs\3dSemestr\PIRATE_BAY_GAME\PIRATE_BAY_GAME\obj\Debug\PIRATE_BAY_GAME.pdb
+E:\vs2012\1progs\3dSemestr\PIRATE_BAY_GAME_0\PIRATE_BAY_GAME\bin\Debug\PIRATE_BAY_GAME.exe.config
+E:\vs2012\1progs\3dSemestr\PIRATE_BAY_GAME_0\PIRATE_BAY_GAME\obj\Debug\PIRATE_BAY_GAME.exe
+E:\vs2012\1progs\3dSemestr\PIRATE_BAY_GAME_0\PIRATE_BAY_GAME\obj\Debug\PIRATE_BAY_GAME.pdb
+E:\vs2012\1progs\3dSemestr\PIRATE_BAY_GAME\PIRATE_BAY_GAME\obj\Debug\SailingWindow.baml
+E:\vs2012\1progs\3dSemestr\PIRATE_BAY_GAME\PIRATE_BAY_GAME\obj\Debug\SailingWindow.g.cs

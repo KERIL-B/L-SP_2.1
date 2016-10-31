@@ -25,6 +25,7 @@ namespace PIRATE_BAY_GAME
 
         System.Timers.Timer timer;
 
+        #region imgs
         private static BitmapImage cornFarmIcon_img = new BitmapImage(new Uri("IMGs\\Buildings\\Farm\\Description.png", UriKind.Relative));
         private ImageBrush cornFarmIcon_Brush = new ImageBrush(cornFarmIcon_img);
         private static BitmapImage kitchenIcon_img = new BitmapImage(new Uri("IMGs\\Buildings\\Kitchen\\Description.png", UriKind.Relative));
@@ -39,6 +40,10 @@ namespace PIRATE_BAY_GAME
         private static BitmapImage messageBG_B_IMG = new BitmapImage(new Uri("IMGs\\Messages\\messageBackground_build.png", UriKind.Relative));
         private ImageBrush messageBG_B_B = new ImageBrush(messageBG_B_IMG);
 
+        private static BitmapImage storyCnvs_IMG = new BitmapImage(new Uri("IMGs\\Story\\none.png", UriKind.Relative));
+        private ImageBrush storyCnvs_B = new ImageBrush(storyCnvs_IMG);
+        #endregion
+
         private bool isRightPannelActive { get; set; }
         private bool repairBtnClicked { get; set; }
 
@@ -46,6 +51,7 @@ namespace PIRATE_BAY_GAME
         {
             InitializeComponent();
 
+            StoryCanvas.Background = storyCnvs_B;
             cornFarmCnvs.Background = cornFarmIcon_Brush;
             kitchenCnvs.Background = kitchenIcon_Brush;
             armoryCnvs.Background = armoryIcon_Brush;
@@ -59,7 +65,6 @@ namespace PIRATE_BAY_GAME
             timer.Elapsed += timer_Elapsed;
             timer.Start();
 
-
         }
 
         private void timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
@@ -68,25 +73,28 @@ namespace PIRATE_BAY_GAME
             {
                 this.Dispatcher.Invoke(() =>
             {
-                #region Ship/map
-                aboutShip.TimeTick();
-
-                if (MessageCanvas.Visibility == System.Windows.Visibility.Visible)
-                    timer.Stop();
-
-                aboutShip.CheckDefferedSail();
-
-                if (repairBtnClicked)
+                if (rightPannelCanvas.Visibility == System.Windows.Visibility.Hidden)
                 {
-                    aboutShip.RepairBtnClick();
-                    repairBtnClicked = false;
+                    #region Ship/map
+                    aboutShip.TimeTick();
+
+                    if (MessageCanvas.Visibility == System.Windows.Visibility.Visible)
+                        timer.Stop();
+
+                    aboutShip.CheckDefferedSail();
+
+                    if (repairBtnClicked)
+                    {
+                        aboutShip.RepairBtnClick();
+                        repairBtnClicked = false;
+                    }
+                    #endregion
+                    #region Buildings
+
+                    aboutBuildings.animateBuildings();
+
+                    #endregion
                 }
-                #endregion
-                #region Buildings
-
-                aboutBuildings.animateBuildings();
-
-                #endregion
             });
             }
             catch (Exception)
@@ -403,6 +411,32 @@ namespace PIRATE_BAY_GAME
 
             }
             BuildingCanvas.Visibility = System.Windows.Visibility.Hidden;
+        }
+
+        private void Window_Closed_1(object sender, EventArgs e)
+        {
+            aboutShip.CloseWin();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            StoryCanvas.Visibility = System.Windows.Visibility.Hidden;
+        }
+
+        private void showStoryBtn_Click(object sender, RoutedEventArgs e)
+        {
+            StoryCanvas.Visibility = System.Windows.Visibility.Visible;
+            hideRightPannelButton_Click(sender, e);
         }
 
     }
